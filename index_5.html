@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consentimiento informado | UNAB</title>
+<style>
+  :root {
+    --bg: #f4f6f9;
+    --card: #ffffff;
+    --ink: #1c2733;
+    --muted: #5b6b7b;
+    --line: #dde3ea;
+    --brand: #0b4f8a;
+    --brand-dark: #083a66;
+    --ok: #1d7a46;
+    --err: #b3261e;
+    --warn-bg: #fff6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    line-height: 1.5; font-size: 16px;
+  }
+  header {
+    background: var(--brand); color: #fff; padding: 20px 16px;
+  }
+  header .wrap { max-width: 720px; margin: 0 auto; }
+  header small { opacity: .85; display: block; margin-bottom: 4px; }
+  header h1 { font-size: 1.25rem; margin: 0; line-height: 1.3; }
+  main { max-width: 720px; margin: 0 auto; padding: 16px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 18px; margin-bottom: 16px;
+  }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; color: var(--brand-dark); }
+  p { margin: 0 0 10px; }
+  ul { margin: 0 0 10px; padding-left: 20px; }
+  li { margin-bottom: 6px; }
+  .pdf-link {
+    display: block; text-align: center; text-decoration: none;
+    border: 2px solid var(--brand); color: var(--brand);
+    padding: 12px; border-radius: 10px; font-weight: 600; margin-top: 12px;
+  }
+  .pdf-link:hover { background: #eaf2fa; }
+  details { border-top: 1px solid var(--line); padding: 10px 0; }
+  details:first-of-type { border-top: 0; }
+  summary { cursor: pointer; font-weight: 600; }
+  details[open] summary { margin-bottom: 8px; }
+  label.field { display: block; font-weight: 600; margin-bottom: 4px; }
+  input[type=text] {
+    width: 100%; padding: 12px; border: 1px solid #b9c4d0; border-radius: 8px;
+    font-size: 1rem; background: #fff; color: var(--ink);
+  }
+  input[type=text]:focus { outline: 3px solid #b8d4ee; border-color: var(--brand); }
+  .hint { color: var(--muted); font-size: .875rem; margin-top: 4px; }
+  .error { color: var(--err); font-size: .875rem; min-height: 1.2em; margin-top: 4px; }
+  fieldset { border: 0; padding: 0; margin: 0 0 14px; }
+  legend { font-weight: 600; margin-bottom: 6px; padding: 0; }
+  .choice {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 12px; border: 1px solid var(--line); border-radius: 8px;
+    margin-bottom: 8px; cursor: pointer; background: #fff;
+  }
+  .choice input { margin-top: 4px; transform: scale(1.2); }
+  .choice:has(input:checked) { border-color: var(--brand); background: #eaf2fa; }
+  .optional-box { background: var(--warn-bg); border-radius: 8px; padding: 12px; margin-bottom: 14px; }
+  .optional-box legend { color: #6b4e00; }
+  button.primary {
+    width: 100%; padding: 14px; font-size: 1.05rem; font-weight: 700;
+    background: var(--brand); color: #fff; border: 0; border-radius: 10px; cursor: pointer;
+  }
+  button.primary:hover { background: var(--brand-dark); }
+  button.primary:disabled { background: #93a5b8; cursor: not-allowed; }
+  .hidden { display: none !important; }
+  .result { text-align: center; padding: 28px 18px; }
+  .result .icon { font-size: 3rem; line-height: 1; }
+  .result.ok .icon { color: var(--ok); }
+  .result.warn .icon { color: var(--muted); }
+  .banner-err {
+    background: #fdecea; color: var(--err); border: 1px solid #f5c2be;
+    padding: 12px; border-radius: 8px; margin-bottom: 12px;
+  }
+  footer { text-align: center; color: var(--muted); font-size: .8rem; padding: 8px 16px 28px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <small>Universidad Andrés Bello · Facultad de Ciencias de la Vida</small>
+    <h1>Consentimiento informado para participantes</h1>
+  </div>
+</header>
+
+<main>
+
+  <!-- ========== FORMULARIO ========== -->
+  <div id="formView">
+
+    <section class="card">
+      <h2>Resumen del estudio</h2>
+      <p>
+        Usted ha sido invitado(a) a participar en el estudio <strong>"Validación de un instrumento de
+        diagnóstico en Biología Celular mediante herramientas psicométricas"</strong>, desarrollado por
+        el Dr. Alejandro Arriagada.
+      </p>
+      <p>
+        Lea este resumen. Si desea ver todos los detalles, abra el documento completo antes de decidir.
+      </p>
+
+      <details open>
+        <summary>¿Para qué es el estudio?</summary>
+        <p>
+          Validar la evaluación diagnóstica de Biología Celular que se rinde al inicio del semestre.
+          Se analizan la dificultad, la discriminación y la confiabilidad de sus preguntas, y su relación con
+          el rendimiento posterior en la asignatura. Con esto se busca identificar los temas más difíciles
+          para adaptar las clases y los materiales.
+        </p>
+      </details>
+
+      <details>
+        <summary>¿Qué se le pide?</summary>
+        <ul>
+          <li>Rendir la evaluación diagnóstica (presencial, en su sala de clases, administrada por su docente).</li>
+          <li>Autorizar el acceso a su resultado de la evaluación diagnóstica (plataforma CMT) y a sus calificaciones
+              parciales y finales del curso (plataforma Banner).</li>
+        </ul>
+        <p>No habrá encuestas adicionales ni entrevistas posteriores.</p>
+      </details>
+
+      <details>
+        <summary>Su participación es voluntaria</summary>
+        <p>
+          Puede no participar, omitir alguna parte para fines de investigación o retirar su autorización en
+          cualquier momento, <strong>sin consecuencias en sus calificaciones ni en su relación con la
+          universidad</strong>. Para retirarse, escriba al Dr. Alejandro Arriagada:
+          <a href="mailto:alejandroarriagada.s@unab.cl">alejandroarriagada.s@unab.cl</a>.
+        </p>
+      </details>
+
+      <details>
+        <summary>Riesgos y beneficios</summary>
+        <ul>
+          <li><strong>Riesgos:</strong> no hay riesgos físicos. Existe un riesgo mínimo asociado a la confidencialidad
+              de los datos, mitigado con codificación y protocolos de seguridad informática.</li>
+          <li><strong>Beneficios:</strong> no recibirá un beneficio directo individual (como puntos extra). Sus datos
+              ayudarán a mejorar las estrategias pedagógicas y la docencia en cursos futuros.</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Confidencialidad de sus datos</summary>
+        <ul>
+          <li>Solo el Dr. Arriagada (Investigador Responsable) podrá ver la tabla que vincula su RUT y nombre con sus notas.</li>
+          <li>Para el análisis, su identidad se reemplaza por un código. El resto del equipo trabaja con bases sin nombres ni RUT.</li>
+          <li>Los registros se guardan con contraseña personal.</li>
+          <li>Su respuesta a este formulario (RUT, nombre y decisión) se recibe temporalmente en una planilla privada de Google Drive del Investigador Responsable. Luego se traslada a su OneDrive, donde se guarda con contraseña, y la copia en Google Drive se elimina.</li>
+          <li>Los resultados se publicarán solo de forma agregada y global; nada permitirá identificarlo(a).</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Contacto ante dudas o consultas</summary>
+        <ul>
+          <li>Dr. Alejandro Arriagada (investigador responsable):
+              <a href="mailto:alejandroarriagada.s@unab.cl">alejandroarriagada.s@unab.cl</a></li>
+          <li>Dr. Claudio Cabello, Presidente del Comité de Bioética de la Facultad de Ciencias de la Vida:
+              <a href="mailto:claudio.cabello@unab.cl">claudio.cabello@unab.cl</a>,
+              <a href="mailto:cbfcb@unab.cl">cbfcb@unab.cl</a></li>
+        </ul>
+      </details>
+
+      <a class="pdf-link" id="pdfLink" href="Consentimiento_Informado_Participantes.pdf" target="_blank" rel="noopener">
+        📄 Leer el consentimiento informado completo (PDF)
+      </a>
+    </section>
+
+    <form id="consentForm" class="card" novalidate autocomplete="off">
+      <h2>Su respuesta</h2>
+
+      <div id="submitError" class="banner-err hidden" role="alert"></div>
+
+      <div style="margin-bottom:14px">
+        <label class="field" for="rut">RUT</label>
+        <input type="text" id="rut" inputmode="text" placeholder="12.345.678-9" autocomplete="off" maxlength="12">
+        <div class="hint">Con dígito verificador. Puede escribirlo con o sin puntos y guion.</div>
+        <div class="error" id="rutErr"></div>
+      </div>
+
+      <div style="margin-bottom:14px">
+        <label class="field" for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" placeholder="Nombres y apellidos" autocomplete="off">
+        <div class="error" id="nombreErr"></div>
+      </div>
+
+      <fieldset>
+        <legend>Declaración del participante</legend>
+        <p class="hint" style="margin-bottom:8px">
+          He leído la información anterior. He tenido la oportunidad de hacer preguntas y estas han sido
+          respondidas a mi satisfacción. Elijo voluntariamente:
+        </p>
+        <label class="choice">
+          <input type="radio" name="acepta" value="SI">
+          <span><strong>Acepto participar</strong> en este estudio y autorizo el uso de mis evaluaciones para los fines descritos.</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="acepta" value="NO">
+          <span><strong>No acepto participar</strong>. Esto no afecta mis calificaciones ni mi relación con la universidad.</span>
+        </label>
+        <div class="error" id="aceptaErr"></div>
+      </fieldset>
+
+      <fieldset class="optional-box hidden" id="otrosBox">
+        <legend>Uso de datos en investigación relacionada</legend>
+        <p class="hint" style="margin-bottom:8px">
+          ¿Autoriza el uso de sus datos <strong>anonimizados</strong> en otros proyectos de investigación relacionados
+          dentro de esta misma línea? Su decisión no afecta su participación en el estudio actual.
+        </p>
+        <label class="choice">
+          <input type="radio" name="otros" value="SI">
+          <span><strong>SÍ</strong> autorizo</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="otros" value="NO">
+          <span><strong>NO</strong> autorizo</span>
+        </label>
+        <div class="error" id="otrosErr"></div>
+      </fieldset>
+
+      <fieldset id="mayorBox">
+        <label class="choice">
+          <input type="checkbox" id="mayor">
+          <span>Confirmo que soy mayor de edad (18 años o más) y que respondo de forma voluntaria e informada.</span>
+        </label>
+        <div class="error" id="mayorErr"></div>
+      </fieldset>
+
+      <button type="submit" class="primary" id="submitBtn">Enviar respuesta</button>
+    </form>
+  </div>
+
+  <!-- ========== RESULTADO ========== -->
+  <section id="doneView" class="card result hidden" aria-live="polite">
+    <div class="icon" id="doneIcon">✓</div>
+    <h2 id="doneTitle">Respuesta registrada</h2>
+    <p id="doneMsg"></p>
+    <p class="hint" id="doneRef"></p>
+  </section>
+
+</main>
+
+<footer>
+  Universidad Andrés Bello · Estudio de validación de instrumento diagnóstico en Biología Celular
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  // =====================================================================
+  //  CONFIGURACIÓN: pegar aquí la URL de la aplicación web de Apps Script
+  //  (termina en /exec). Ver README.md, paso 3.
+  // =====================================================================
+  var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx9fEkr-N5QAs6gfB314A99DD7EYqMuTKhNZzSfNPFIteGxbmQsMXoouPCWZpdXOowbrg/exec";
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  // ---------- RUT chileno ----------
+  function limpiarRut(v) {
+    return String(v || "").replace(/[^0-9kK]/g, "").toUpperCase();
+  }
+  function calcularDV(cuerpo) {
+    var suma = 0, mult = 2;
+    for (var i = cuerpo.length - 1; i >= 0; i--) {
+      suma += parseInt(cuerpo.charAt(i), 10) * mult;
+      mult = mult === 7 ? 2 : mult + 1;
+    }
+    var r = 11 - (suma % 11);
+    return r === 11 ? "0" : (r === 10 ? "K" : String(r));
+  }
+  function rutValido(v) {
+    var c = limpiarRut(v);
+    if (c.length < 8 || c.length > 9) return false;
+    var cuerpo = c.slice(0, -1), dv = c.slice(-1);
+    if (!/^\d+$/.test(cuerpo)) return false;
+    return calcularDV(cuerpo) === dv;
+  }
+  function formatearRut(v) {
+    var c = limpiarRut(v);
+    if (c.length < 2) return c;
+    var cuerpo = c.slice(0, -1), dv = c.slice(-1);
+    return cuerpo.replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "-" + dv;
+  }
+  function rutNormalizado(v) {
+    var c = limpiarRut(v);
+    return c.slice(0, -1) + "-" + c.slice(-1);
+  }
+
+  // ---------- Interacción ----------
+  $("rut").addEventListener("input", function (e) {
+    var pos = e.target.selectionStart, antes = e.target.value.length;
+    e.target.value = formatearRut(e.target.value);
+    if (pos !== null && pos >= antes) { /* cursor al final */ }
+    $("rutErr").textContent = "";
+  });
+  $("nombre").addEventListener("input", function () { $("nombreErr").textContent = ""; });
+
+  var radiosAcepta = document.querySelectorAll('input[name="acepta"]');
+  for (var i = 0; i < radiosAcepta.length; i++) {
+    radiosAcepta[i].addEventListener("change", function () {
+      $("aceptaErr").textContent = "";
+      var acepta = valorRadio("acepta") === "SI";
+      $("otrosBox").classList.toggle("hidden", !acepta);
+      $("mayorBox").classList.toggle("hidden", !acepta);
+    });
+  }
+  var radiosOtros = document.querySelectorAll('input[name="otros"]');
+  for (var j = 0; j < radiosOtros.length; j++) {
+    radiosOtros[j].addEventListener("change", function () { $("otrosErr").textContent = ""; });
+  }
+  $("mayor").addEventListener("change", function () { $("mayorErr").textContent = ""; });
+
+  function valorRadio(name) {
+    var el = document.querySelector('input[name="' + name + '"]:checked');
+    return el ? el.value : "";
+  }
+
+  function mostrarError(msg) {
+    var b = $("submitError");
+    b.textContent = msg;
+    b.classList.remove("hidden");
+    b.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  // ---------- Validación ----------
+  function validar() {
+    var ok = true;
+    $("submitError").classList.add("hidden");
+
+    if (!rutValido($("rut").value)) {
+      $("rutErr").textContent = "El RUT no es válido. Revise el número y el dígito verificador.";
+      ok = false;
+    }
+    var nombre = $("nombre").value.trim().replace(/\s+/g, " ");
+    if (nombre.length < 5 || nombre.indexOf(" ") === -1) {
+      $("nombreErr").textContent = "Ingrese su nombre completo (nombres y apellidos).";
+      ok = false;
+    }
+    var acepta = valorRadio("acepta");
+    if (!acepta) {
+      $("aceptaErr").textContent = "Seleccione una opción.";
+      ok = false;
+    }
+    if (acepta === "SI") {
+      if (!valorRadio("otros")) {
+        $("otrosErr").textContent = "Seleccione SÍ o NO.";
+        ok = false;
+      }
+      if (!$("mayor").checked) {
+        $("mayorErr").textContent = "Debe confirmar que es mayor de edad para participar.";
+        ok = false;
+      }
+    }
+    return ok;
+  }
+
+  // ---------- Envío ----------
+  $("consentForm").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    if (!validar()) return;
+
+    if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.indexOf("PEGAR_AQUI") === 0) {
+      mostrarError("La aplicación aún no está configurada (falta la URL del servidor). Avise a su docente.");
+      return;
+    }
+
+    var acepta = valorRadio("acepta");
+    var payload = {
+      rut: rutNormalizado($("rut").value),
+      nombre: $("nombre").value.trim().replace(/\s+/g, " "),
+      acepta: acepta,
+      otros_proyectos: acepta === "SI" ? valorRadio("otros") : "NO APLICA",
+      mayor_edad: acepta === "SI" ? "SI" : "NO APLICA",
+      version_consentimiento: "v1",
+      user_agent: navigator.userAgent.slice(0, 200)
+    };
+
+    var btn = $("submitBtn");
+    btn.disabled = true;
+    btn.textContent = "Enviando…";
+
+    // text/plain evita el preflight CORS con Apps Script
+    fetch(APPS_SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (res) {
+      if (!res || !res.ok) {
+        throw new Error((res && res.error) || "Error desconocido");
+      }
+      mostrarResultado(payload, res);
+    })
+    .catch(function (err) {
+      btn.disabled = false;
+      btn.textContent = "Enviar respuesta";
+      mostrarError("No se pudo registrar su respuesta (" + err.message + "). Revise su conexión e inténtelo nuevamente.");
+    });
+  });
+
+  function mostrarResultado(p, res) {
+    $("formView").classList.add("hidden");
+    var done = $("doneView");
+    done.classList.remove("hidden");
+    if (p.acepta === "SI") {
+      done.className = "card result ok";
+      $("doneIcon").textContent = "✓";
+      $("doneTitle").textContent = "Gracias por participar";
+      $("doneMsg").textContent = "Su aceptación quedó registrada. Puede cerrar esta página.";
+    } else {
+      done.className = "card result warn";
+      $("doneIcon").textContent = "✓";
+      $("doneTitle").textContent = "Respuesta registrada";
+      $("doneMsg").textContent = "Registramos que no desea participar. Esto no afecta sus calificaciones. Puede cerrar esta página.";
+    }
+    if (res.actualizado) {
+      $("doneRef").textContent = "Ya existía una respuesta con su RUT; se actualizó con esta última.";
+    } else if (res.codigo) {
+      $("doneRef").textContent = "Código de registro: " + res.codigo;
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+})();
+</script>
+</body>
+</html>
